@@ -67,3 +67,7 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+## dependencies' tracking files
+yarn.lock
+package-lock.json
