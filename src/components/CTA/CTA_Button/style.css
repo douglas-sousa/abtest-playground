@@ -1,0 +1,24 @@
+.CTA_Button {
+  border: 0;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.CTA_Button.dark {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.CTA_Button.light {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.CTA_Button.transparent {
+  background-color: transparent;
+  color: var(--purple);
+}
