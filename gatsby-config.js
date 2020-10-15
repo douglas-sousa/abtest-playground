@@ -5,6 +5,6 @@
  */
 
 module.exports = {
-  pathPrefix: '/abtest',
+  pathPrefix: '/abtest-playground',
   plugins: [],
 }

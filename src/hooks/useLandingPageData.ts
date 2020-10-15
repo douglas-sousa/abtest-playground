@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { remoteConfig } from '@/ABTesting';
+import { initFirebase } from '@/lib/Firebase';
 import { CTA_Props } from '@/components/CTA';
 
 type LandingPageResponse = {
@@ -11,10 +11,22 @@ type Props = {
   page: string;
 }
 
+const DUMMY_DATA: LandingPageResponse = {
+  btn_data: { mode: 'dark', children: '' },
+  header_data: { mode: 'light', children: '' }
+}
+
 export function useLandingPageData({ page }: Props): LandingPageResponse {
-  const [landingPageData, setLandingPageDate] = useState<LandingPageResponse>(JSON.parse(remoteConfig.getString(page)));
+  const [landingPageData, setLandingPageDate] = useState<LandingPageResponse>(DUMMY_DATA);
 
   useEffect(() => {
+    const remoteConfig = initFirebase().remoteConfig();
+
+    remoteConfig.settings = {
+      fetchTimeoutMillis: 60000,
+      minimumFetchIntervalMillis: Number(process.env.GATSBY_FIREBASE_CACHE_EXPIRATION)
+    };
+
     remoteConfig.fetchAndActivate()
       .then((isNewFetch) => {
         console.log(isNewFetch ? 'Novos dados' : 'Dados do cache');

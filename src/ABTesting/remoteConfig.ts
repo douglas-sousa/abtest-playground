@@ -1,7 +1,7 @@
-import { firebaseInstance } from '@/lib/Firebase';
+import { initFirebase } from '@/lib/Firebase';
 import { CTA_Props } from '@/components/CTA';
 
-const remoteConfig = firebaseInstance.remoteConfig();
+const remoteConfig = initFirebase().remoteConfig();
 
 remoteConfig.settings = {
   fetchTimeoutMillis: 60000,
